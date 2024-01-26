@@ -29,4 +29,4 @@ end
 
 local opts = {
 }
-require('lazy').setup(plugins, opts)
+lib.prequire('lazy').setup(plugins, opts)

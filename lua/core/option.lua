@@ -22,8 +22,8 @@ opt.ignorecase = true
 opt.smartcase = true
 
 -- add this config as runtime path and packpath
-opt.rtp:append("~/.config/nvim_small")
-opt.packpath:append("~/.config/nvim_small")
+-- opt.rtp:append("~/.config/nvim_small")
+-- opt.packpath:append("~/.config/nvim_small")
 
 opt.scroll = 10
 
