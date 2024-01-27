@@ -1,2 +1,2 @@
-require('lsp/setup')
-require('lsp/install')
+require('lsp.setup')
+require('lsp.install')

@@ -1,4 +1,5 @@
 require('lib')
 require('core')
 require('plugin')
+require('core.theme')
 require('lsp')
