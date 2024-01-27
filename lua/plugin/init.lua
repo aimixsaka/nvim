@@ -1,7 +1,4 @@
-local ok, lib = pcall(require, 'lib')
-if not ok then
-  error('Cannot load module [lib]')
-end
+local lib = require('lib')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -19,10 +16,9 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {}
 local plugin_path = lib.script_path()
 -- strip self to prevent loop require
-for file in io.popen('find ' .. plugin_path .. ' -type f | grep -v plugin/init.lua'):lines() do
+for _, module in ipairs(lib.modules_from_dir(plugin_path .. 'install/')) do
   -- `gsub` see https://www.lua.org/pil/20.2.html
-  local module = file:gsub('%.lua', ''):match(lib.nvim_lua_dir .. '(.*)')
-  for _, plugin in pairs(require(module)) do
+  for _, plugin in ipairs(require(module)) do
     table.insert(plugins, plugin)
   end
 end
@@ -30,3 +26,9 @@ end
 local opts = {
 }
 lib.prequire('lazy').setup(plugins, opts)
+
+
+-- require plugin config
+for _, config in ipairs(lib.modules_from_dir(plugin_path .. 'config/')) do
+  require(config)
+end
