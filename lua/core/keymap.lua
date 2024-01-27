@@ -1,9 +1,9 @@
-------------------------------
----------- keymap ------------
-------------------------------
 local map = vim.keymap.set
 local option = { silent = true }
 
+------- ----- ----
+--- global map ---
+------------------
 map('n', '<ESC>', ':nohl<CR>', option)
 -- copy to system clipboard
 map('v', '<leader>y', '"+y', option)

@@ -5,6 +5,10 @@ local g = vim.g
 -- leader key
 g.mapleader = " "
 
+-- disable netrw
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+
 ------------------------------
 --------- options  -----------
 ------------------------------
@@ -27,3 +31,5 @@ opt.smartcase = true
 
 opt.scroll = 10
 
+-- enable 24-bit colour
+opt.termguicolors = true
