@@ -62,3 +62,6 @@ for _, server in ipairs(servers) do
   end
   require('lspconfig')[server].setup(lsp_config)
 end
+
+-- Setup keymap
+require('lsp.keymap')
