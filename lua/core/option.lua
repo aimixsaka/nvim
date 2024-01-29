@@ -18,6 +18,13 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 
+opt.expandtab = true
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.softtabstop = 4
+
+-- indent
+
 -- persist undo
 opt.undofile = true
 
