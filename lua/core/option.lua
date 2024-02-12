@@ -30,6 +30,12 @@ opt.undofile = true
 opt.ignorecase = true
 opt.smartcase = true
 
+-- interval for writing swap file to disk, also used by gitsigns
+opt.updatetime = 250
+
+opt.timeoutlen = 300
+opt.ttimeoutlen = 5
+
 -- add this config as runtime path and packpath
 -- opt.rtp:append("~/.config/nvim_small")
 -- opt.packpath:append("~/.config/nvim_small")
