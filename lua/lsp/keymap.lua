@@ -2,10 +2,10 @@ local map = vim.keymap.set
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-map('n', 'df', vim.diagnostic.open_float)
+map('n', '<leader>df', vim.diagnostic.open_float)
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
-map('n', '<leader>q', vim.diagnostic.setloclist)
+map('n', '<leader>dl', vim.diagnostic.setloclist)
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer

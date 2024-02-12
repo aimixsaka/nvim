@@ -53,11 +53,15 @@ local lsp_config = {
 }
 
 local installed_servers = lib.prequire('mason-lspconfig').get_installed_servers()
-local servers = lib.merge_list(require('lsp.server'), installed_servers)
+local servers = lib.merge_list(
+  lib.merge_list(require('lsp.server').must, require('lsp.server').manually),
+  installed_servers
+)
 
 for _, server in ipairs(servers) do
   local ok, user_config = pcall(require, 'lsp.servers.' .. server)
-  if ok then
+  -- FIXME: a little hack here (lua will return true if require an empty file )!!
+  if ok and user_config ~= true then
     lsp_config = lib.merge_table(lsp_config, user_config)
   end
   require('lspconfig')[server].setup(lsp_config)

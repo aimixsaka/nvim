@@ -5,5 +5,5 @@ end
 
 lib.prequire("mason").setup()
 lib.prequire("mason-lspconfig").setup({
-  ensure_installed = lib.prequire('lsp/server'),
+  ensure_installed = lib.prequire('lsp.server').must,
 })
