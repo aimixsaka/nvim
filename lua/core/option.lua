@@ -2,8 +2,6 @@
 --------- global var ---------
 ------------------------------
 local g = vim.g
--- leader key
-g.mapleader = " "
 
 -- disable netrw
 g.loaded_netrw = 1
