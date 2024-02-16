@@ -13,6 +13,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-----------------
+-- plugin list --
+-----------------
 local plugins = {}
 local plugin_path = lib.script_path()
 -- strip self to prevent loop require
@@ -24,6 +27,41 @@ for _, module in ipairs(lib.modules_from_dir(plugin_path .. 'install/')) do
 end
 
 local opts = {
+  defaults = { lazy = true },
+  performance = {
+    -- disable some builtin plugins to improve performance
+    -- copy from https://github.com/NvChad/NvChad/blob/f17e83010f25784b58dea175c6480b3a8225a3e9/lua/plugins/configs/lazy_nvim.lua#L14-L44
+    rtp = {
+      disabled_plugins = {
+        "2html_plugin",
+        "tohtml",
+        "getscript",
+        "getscriptPlugin",
+        "gzip",
+        "logipat",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "matchit",
+        "tar",
+        "tarPlugin",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
+        "zip",
+        "zipPlugin",
+        "tutor",
+        "rplugin",
+        "syntax",
+        "synmenu",
+        "optwin",
+        "compiler",
+        "bugreport",
+      },
+    },
+  },
 }
 lib.prequire('lazy').setup(plugins, opts)
 
