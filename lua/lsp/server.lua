@@ -12,5 +12,6 @@ return {
   -- (may use something like nix to manually install)
   manually = {
     --'java_language_server',
+    'dartls',
   }
 }
