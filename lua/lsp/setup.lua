@@ -66,7 +66,7 @@ for _, server in ipairs(servers) do
   local ok, user_config = pcall(require, 'lsp.servers.' .. server)
   -- FIXME: a little hack here (lua will return true if require an empty file )!!
   if ok and user_config ~= true then
-    lsp_config = lib.merge_table(lsp_config, user_config)
+    lsp_config = vim.tbl_deep_extend('force', lsp_config, user_config)
   end
   require('lspconfig')[server].setup(lsp_config)
 end
