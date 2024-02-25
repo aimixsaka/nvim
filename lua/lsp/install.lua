@@ -1,9 +1,9 @@
-local ok, lib = pcall(require, 'lib')
-if not ok then
-  error('Cannot load module [lib]')
-end
+local lib = require('lib')
 
 lib.prequire("mason").setup()
+
+
 lib.prequire("mason-lspconfig").setup({
-  ensure_installed = lib.prequire('lsp.server').must,
+  -- not using `require` here to prevent module cache
+  ensure_installed = dofile(lib.current_file_dir() .. 'server.lua')
 })

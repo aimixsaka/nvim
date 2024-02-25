@@ -57,8 +57,9 @@ local lsp_config = {
 }
 
 local installed_servers = lib.prequire('mason-lspconfig').get_installed_servers()
+local defined_servers = dofile(lib.current_file_dir() .. 'server.lua')
 local servers = lib.merge_list(
-  lib.merge_list(require('lsp.server').must, require('lsp.server').manually),
+  lib.merge_list(defined_servers.must, defined_servers.manually),
   installed_servers
 )
 
