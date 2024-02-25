@@ -1,6 +1,9 @@
 local lib = require('lib')
 local cmp = lib.prequire('cmp')
 
+-------------------
+------ cmp -----
+-------------------
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -49,6 +52,11 @@ cmp.setup.cmdline(':', {
   })
 })
 
+
+
+-------------------
+--- lspconfig ---
+-------------------
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 

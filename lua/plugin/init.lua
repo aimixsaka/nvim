@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 -- plugin list --
 -----------------
 local plugins = {}
-local plugin_path = lib.script_path()
+local plugin_path = lib.current_file_dir()
 -- strip self to prevent loop require
 for _, module in ipairs(lib.modules_from_dir(plugin_path .. 'install/')) do
   table.insert(plugins, require(module))
