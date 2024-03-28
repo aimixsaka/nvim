@@ -1,9 +1,16 @@
 local lib = require('lib')
 local cmp = lib.prequire('cmp')
+local luasnip = lib.prequire("luasnip")
 
 -------------------
 ------ cmp -----
 -------------------
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -20,7 +27,30 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+      -- that way you will only jump inside the snippet region
+      --if luasnip.expand_or_jumpable() then
+      if luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
   }),
+
   sources = cmp.config.sources(
     {
       { name = 'nvim_lsp' },
@@ -46,10 +76,10 @@ cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
-    { name = 'cmdline' }
-  }, {
-    { name = 'buffer' }
-  })
+      { name = 'cmdline' }
+    }, {
+      { name = 'buffer' }
+    })
 })
 
 

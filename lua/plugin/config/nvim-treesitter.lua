@@ -39,11 +39,11 @@ lib.prequire'nvim-treesitter.configs'.setup {
     -- disable = { "c", "rust" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
-        local max_filesize = 100 * 1024 -- 100 KB
-        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-        if ok and stats and stats.size > max_filesize then
-            return true
-        end
+      local max_filesize = 100 * 1024 -- 100 KB
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      end
     end,
 
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -51,5 +51,17 @@ lib.prequire'nvim-treesitter.configs'.setup {
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
+
   },
+
+  -- FIXME: seems not work or don't know how to use this :(
+  -- incremental_selection = {
+  --   enable = true,
+  --   keymaps = {
+  --     init_selection = "gnn", -- set to `false` to disable one of the mappings
+  --     node_incremental = "grn",
+  --     scope_incremental = "grc",
+  --     node_decremental = "grm",
+  --   },
+  -- },
 }

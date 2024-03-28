@@ -44,3 +44,7 @@ opt.scroll = 10
 
 -- enable 24-bit colour
 opt.termguicolors = true
+
+-- fold
+opt.foldmethod = 'expr'
+opt.foldexpr = vim.g['nvim_treesitter#foldexpr']
